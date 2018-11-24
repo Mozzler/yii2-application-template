@@ -70,11 +70,11 @@
         },
         {
             "type": "path",
-            "url": "vendor-dev/web"
+            "url": "../mozzler/web"
         },
         {
             "type": "path",
-            "url": "vendor-dev/auth"
+            "url": "../mozzler/auth"
         }
     ]
 }

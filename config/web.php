@@ -7,7 +7,6 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'controllerNamespace' => 'app\project\web',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -75,8 +74,8 @@ $config = [
 	    'auth' => [
 		    'class' => 'mozzler\auth\Module'
 	    ],
-	    'api' => [
-		    'class' => 'mozzler\api\Module'
+	    'v1' => [
+		    'class' => 'app\apiv1\Module'
 	    ],
     ],
     'params' => $params,

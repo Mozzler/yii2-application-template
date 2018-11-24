@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
-$rappsio = \Yii::$app->getModule('rappsio');
 
 ?>
 <div class="site-index">
@@ -53,5 +52,3 @@ $rappsio = \Yii::$app->getModule('rappsio');
 
     </div>
 </div>
-
-<?=print_r($rappsio->params)?>

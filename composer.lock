@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce2bfd9cf93ff5a224583177fcdae6f4",
+    "content-hash": "ac75ac490cacffcfaef4bf5e8b166727",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1301,12 +1301,35 @@
             "time": "2017-03-20T17:10:46+00:00"
         },
         {
+            "name": "mozzler/yii2-api",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../mozzler/api",
+                "reference": "9da971edb207303b09e7630fd3e5d35b8fc9e03b",
+                "shasum": null
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "mozzler\\api\\": ""
+                }
+            },
+            "authors": [
+                {
+                    "name": "Chris Were",
+                    "email": "chris@mozzler.com.au"
+                }
+            ],
+            "description": "Mozzler API"
+        },
+        {
             "name": "mozzler/yii2-auth",
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "/var/www/mozzler/auth",
-                "reference": "70b56162d86e2e7788ebb435d670ba86d5037e1a",
+                "url": "../mozzler/auth",
+                "reference": "833370d54a37ad57b05ed1e467239165196a1fd6",
                 "shasum": null
             },
             "type": "yii2-extension",
@@ -1328,8 +1351,8 @@
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "/var/www/mozzler/web",
-                "reference": "dde2238d22c0d6a9faf7bd0f0213c0e715060ab9",
+                "url": "../mozzler/web",
+                "reference": "3aeb50a58df606765af46f708e3eb3dc4af4521c",
                 "shasum": null
             },
             "type": "yii2-extension",
@@ -3346,7 +3369,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "mozzler/yii2-web": 20,
-        "mozzler/yii2-auth": 20
+        "mozzler/yii2-auth": 20,
+        "mozzler/yii2-api": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

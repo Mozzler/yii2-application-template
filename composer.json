@@ -30,7 +30,8 @@
         "codeception/verify": "~0.3.1",
         "codeception/specify": "~0.4.3",
         "mozzler/yii2-web": "@dev",
-        "mozzler/yii2-auth": "@dev"
+        "mozzler/yii2-auth": "@dev",
+        "mozzler/yii2-api": "@dev"
     },
     "config": {
         "process-timeout": 1800,
@@ -75,6 +76,10 @@
         {
             "type": "path",
             "url": "../mozzler/auth"
+        },
+        {
+            "type": "path",
+            "url": "../mozzler/api"
         }
     ]
 }

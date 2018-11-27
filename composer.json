@@ -29,9 +29,11 @@
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1",
         "codeception/specify": "~0.4.3",
+        "mozzler/yii2-base": "@dev",
         "mozzler/yii2-web": "@dev",
-        "mozzler/yii2-auth": "@dev",
-        "mozzler/yii2-api": "@dev"
+        "mozzler/yii2-webauth": "@dev",
+        "mozzler/yii2-api": "@dev",
+        "mozzler/yii2-auth": "@dev"
     },
     "config": {
         "process-timeout": 1800,
@@ -66,6 +68,10 @@
     },
     "repositories": [
         {
+            "type": "path",
+            "url": "../mozzler/base"
+        },
+        {
             "type": "composer",
             "url": "https://asset-packagist.org"
         },
@@ -75,11 +81,15 @@
         },
         {
             "type": "path",
-            "url": "../mozzler/auth"
+            "url": "../mozzler/webauth"
         },
         {
             "type": "path",
             "url": "../mozzler/api"
+        },
+        {
+            "type": "path",
+            "url": "../mozzler/auth"
         }
     ]
 }

@@ -72,11 +72,14 @@ $config = [
 		    'class' => 'mozzler\web\Module'
 	    ],
 	    'auth' => [
-		    'class' => 'mozzler\auth\Module'
+		    'class' => 'mozzler\webauth\Module'
 	    ],
 	    'v1' => [
 		    'class' => 'app\apiv1\Module'
 	    ],
+    ],
+    'controllerMap' => [
+	    'user' => 'mozzler\webauth\controllers\UserController'
     ],
     'params' => $params,
 ];

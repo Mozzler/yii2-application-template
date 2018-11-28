@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a4e919efde8df7774da9b0ce851bee3",
+    "content-hash": "1f46d85dc211d2103fa2b582275bac8f",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1324,12 +1324,35 @@
             "description": "Mozzler API"
         },
         {
+            "name": "mozzler/yii2-apiauth",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../mozzler/apiauth",
+                "reference": "7e444467f09341694f5656cee2d7419f9eb77ed1",
+                "shasum": null
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "mozzler\\apiauth\\": ""
+                }
+            },
+            "authors": [
+                {
+                    "name": "Chris Were",
+                    "email": "chris@mozzler.com.au"
+                }
+            ],
+            "description": "Mozzler API Auth"
+        },
+        {
             "name": "mozzler/yii2-auth",
             "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "../mozzler/auth",
-                "reference": "70b56162d86e2e7788ebb435d670ba86d5037e1a",
+                "reference": "0df99c2f8785a0339744505c328ff62af51aff9b",
                 "shasum": null
             },
             "type": "yii2-extension",
@@ -1352,7 +1375,7 @@
             "dist": {
                 "type": "path",
                 "url": "../mozzler/base",
-                "reference": "0ae0ee97aea083b73e7b861b862d82087a95f4a9",
+                "reference": "abecc74568af5ba850bd0be078cc29223b4fe14a",
                 "shasum": null
             },
             "type": "yii2-extension",
@@ -1375,7 +1398,7 @@
             "dist": {
                 "type": "path",
                 "url": "../mozzler/web",
-                "reference": "10b07cda3128f8375a210f1b6d5ef499c02ca946",
+                "reference": "1b190e913573697c97e4365da7626be1f30925a1",
                 "shasum": null
             },
             "type": "yii2-extension",
@@ -1398,7 +1421,7 @@
             "dist": {
                 "type": "path",
                 "url": "../mozzler/webauth",
-                "reference": "833370d54a37ad57b05ed1e467239165196a1fd6",
+                "reference": "8c1a5430c2aa858a0d31ccc291d901ba93bcddf8",
                 "shasum": null
             },
             "type": "yii2-extension",
@@ -3418,7 +3441,8 @@
         "mozzler/yii2-web": 20,
         "mozzler/yii2-webauth": 20,
         "mozzler/yii2-api": 20,
-        "mozzler/yii2-auth": 20
+        "mozzler/yii2-auth": 20,
+        "mozzler/yii2-apiauth": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

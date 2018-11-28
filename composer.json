@@ -33,7 +33,8 @@
         "mozzler/yii2-web": "@dev",
         "mozzler/yii2-webauth": "@dev",
         "mozzler/yii2-api": "@dev",
-        "mozzler/yii2-auth": "@dev"
+        "mozzler/yii2-auth": "@dev",
+        "mozzler/yii2-apiauth": "@dev"
     },
     "config": {
         "process-timeout": 1800,
@@ -90,6 +91,10 @@
         {
             "type": "path",
             "url": "../mozzler/auth"
+        },
+        {
+            "type": "path",
+            "url": "../mozzler/apiauth"
         }
     ]
 }

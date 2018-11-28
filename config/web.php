@@ -10,7 +10,6 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
-        '@api'	=> '@app/project/api-v1',
         '@webapp' => '@app/project/app',
         '@console' => '@app/project/console'
     ],
@@ -18,6 +17,9 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'c2cy7924c4792c949c2r9y7c',
+            'parsers' => [
+				'application/json' => 'yii\web\JsonParser',
+			]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -45,10 +47,17 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'mongodb' => [
+            'class' => '\yii\mongodb\Connection',
+            'dsn' => 'mongodb://localhost:27017/myapp'
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false
+            //'enableStrictParsing' => true,
+            'showScriptName' => false,
+            'rules' => [
+		        ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/user'],
+		    ],
         ],
         'view' => [
 	        'class' => 'mozzler\web\yii\web\View',

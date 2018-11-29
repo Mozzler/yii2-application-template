@@ -87,9 +87,6 @@ $config = [
 		    'class' => 'app\apiv1\Module'
 	    ],
     ],
-    'controllerMap' => [
-	    'user' => 'mozzler\webauth\controllers\UserController'
-    ],
     'params' => $params,
 ];
 

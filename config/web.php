@@ -74,7 +74,10 @@ $config = [
 	            ]
 	        ],
 	        'defaultExtension' => 'twig'
-        ]
+        ],
+        'mozzler' => [
+		    'class' => 'mozzler\base\Mozzler'
+	    ],
     ],
     'modules' => [
 	    'web' => [

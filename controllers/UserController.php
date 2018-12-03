@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
 
-use mozzler\webauth\controllers\UserController as BaseController;
+use mozzler\auth\controllers\UserWebController as BaseController;
 
 class UserController extends BaseController {
 	

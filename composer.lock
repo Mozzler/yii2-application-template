@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f46d85dc211d2103fa2b582275bac8f",
+    "content-hash": "6af0a067937fcc8fe483fee3724032d8",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1301,52 +1301,6 @@
             "time": "2017-03-20T17:10:46+00:00"
         },
         {
-            "name": "mozzler/yii2-api",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../mozzler/api",
-                "reference": "5f1e1b1446091281540e47c363f7cd8f9995dcb6",
-                "shasum": null
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "mozzler\\api\\": ""
-                }
-            },
-            "authors": [
-                {
-                    "name": "Chris Were",
-                    "email": "chris@mozzler.com.au"
-                }
-            ],
-            "description": "Mozzler API"
-        },
-        {
-            "name": "mozzler/yii2-apiauth",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../mozzler/apiauth",
-                "reference": "7e444467f09341694f5656cee2d7419f9eb77ed1",
-                "shasum": null
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "mozzler\\apiauth\\": ""
-                }
-            },
-            "authors": [
-                {
-                    "name": "Chris Were",
-                    "email": "chris@mozzler.com.au"
-                }
-            ],
-            "description": "Mozzler API Auth"
-        },
-        {
             "name": "mozzler/yii2-auth",
             "version": "dev-master",
             "dist": {
@@ -1375,7 +1329,7 @@
             "dist": {
                 "type": "path",
                 "url": "../mozzler/base",
-                "reference": "abecc74568af5ba850bd0be078cc29223b4fe14a",
+                "reference": "eedf5a3c64bb6e49a65e2da6b76cc5ee95139f9f",
                 "shasum": null
             },
             "type": "yii2-extension",
@@ -1391,52 +1345,6 @@
                 }
             ],
             "description": "mozzler core"
-        },
-        {
-            "name": "mozzler/yii2-web",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../mozzler/web",
-                "reference": "1b190e913573697c97e4365da7626be1f30925a1",
-                "shasum": null
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "mozzler\\web\\": ""
-                }
-            },
-            "authors": [
-                {
-                    "name": "Chris Were",
-                    "email": "chris@mozzler.com.au"
-                }
-            ],
-            "description": "mozzler core"
-        },
-        {
-            "name": "mozzler/yii2-webauth",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../mozzler/webauth",
-                "reference": "8c1a5430c2aa858a0d31ccc291d901ba93bcddf8",
-                "shasum": null
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "mozzler\\webauth\\": ""
-                }
-            },
-            "authors": [
-                {
-                    "name": "Chris Were",
-                    "email": "chris@mozzler.com.au"
-                }
-            ],
-            "description": "mozzler auth"
         },
         {
             "name": "myclabs/deep-copy",
@@ -3438,11 +3346,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "mozzler/yii2-base": 20,
-        "mozzler/yii2-web": 20,
-        "mozzler/yii2-webauth": 20,
-        "mozzler/yii2-api": 20,
-        "mozzler/yii2-auth": 20,
-        "mozzler/yii2-apiauth": 20
+        "mozzler/yii2-auth": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

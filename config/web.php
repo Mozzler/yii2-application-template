@@ -60,7 +60,7 @@ $config = [
 		    ],
         ],
         'view' => [
-	        'class' => 'mozzler\web\yii\web\View',
+	        'class' => 'mozzler\base\yii\web\View',
             'renderers' => [
 		        'twig' => [
 	                'class' => 'yii\twig\ViewRenderer',

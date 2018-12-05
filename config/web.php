@@ -65,18 +65,24 @@ $config = [
 		        'twig' => [
 	                'class' => 'yii\twig\ViewRenderer',
 	                'cachePath' => '@runtime/Twig/cache',
-	                // Array of twig options:
 	                'options' => [
 	                    'auto_reload' => true,
+	                    'autoescape' => false
 	                ],
-	                'globals' => ['html' => '\yii\helpers\Html'],
-	                'uses' => ['yii\bootstrap'],
+	                'globals' => [
+	                	'html' => [
+	                		'class' => '\yii\helpers\Html'
+	                	],
+	                	't' => [
+	                		'class' => '\mozzler\base\components\Tools'
+	                	]
+	                ],
 	            ]
 	        ],
 	        'defaultExtension' => 'twig'
         ],
         'mozzler' => [
-		    'class' => 'mozzler\base\Mozzler'
+		    'class' => 'mozzler\base\components\Mozzler'
 	    ],
     ],
     'modules' => [
@@ -108,6 +114,8 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
+    
+    $config['components']['view']['renderers']['twig']['extensions'] = ['Twig_Extension_Debug'];
 }
 
 return $config;

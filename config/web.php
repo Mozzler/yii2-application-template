@@ -73,6 +73,9 @@ $config = [
 	                	'html' => [
 	                		'class' => '\yii\helpers\Html'
 	                	],
+	                	'arrayhelper' => [
+		                	'class' => '\yii\helpers\ArrayHelper'
+	                	],
 	                	't' => [
 	                		'class' => '\mozzler\base\components\Tools'
 	                	]

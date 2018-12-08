@@ -87,13 +87,17 @@ $config = [
         'mozzler' => [
 		    'class' => 'mozzler\base\components\Mozzler'
 	    ],
+	    'formatter' => [
+		    'datetimeFormat' => 'Y-m-d H:i:s',
+		    'dateFormat' => 'Y-m-d'
+	    ]
     ],
     'modules' => [
-	    'web' => [
-		    'class' => 'mozzler\web\Module'
-	    ],
-	    'auth' => [
-		    'class' => 'mozzler\webauth\Module'
+	    'gridview' =>  [
+        	'class' => '\kartik\grid\Module'
+        ],
+	    'mozzlerBase' => [
+		    'class' => '\mozzler\base\Module'
 	    ],
 	    'v1' => [
 		    'class' => 'app\apiv1\Module'

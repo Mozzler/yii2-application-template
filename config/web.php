@@ -5,13 +5,12 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'Project Name',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','v1','oauth2','rbac'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
-        '@webapp' => '@app/project/app',
-        '@console' => '@app/project/console'
+        '@npm'   => '@vendor/npm-asset'
     ],
     'components' => [
         'request' => [
@@ -47,16 +46,12 @@ $config = [
                 ],
             ],
         ],
-        'mongodb' => [
-            'class' => '\yii\mongodb\Connection',
-            'dsn' => 'mongodb://localhost:27017/myapp'
-        ],
+        'mongodb' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
-            //'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-		        ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/user'],
+//		        ['class' => 'mozzler\base\yii\rest\MongoUrlRule', 'controller' => 'v1/<controllername>'],
 		    ],
         ],
         'view' => [
@@ -87,6 +82,10 @@ $config = [
         'mozzler' => [
 		    'class' => 'mozzler\base\components\Mozzler'
 	    ],
+	    'rbac' => [
+		    'class' => 'mozzler\rbac\components\RbacManager',
+		    'traceEnabled' => YII_DEBUG ? true : false
+	    ],
 	    'formatter' => [
 		    'datetimeFormat' => 'Y-m-d H:i:s',
 		    'dateFormat' => 'Y-m-d'
@@ -102,6 +101,12 @@ $config = [
 	    'v1' => [
 		    'class' => 'app\apiv1\Module'
 	    ],
+	    'oauth2' => [
+	        'class' => '\mozzler\auth\OauthModule'
+	    ],
+	    'auth' => [
+	        'class' => '\mozzler\auth\Module'
+	    ]
     ],
     'params' => $params,
 ];

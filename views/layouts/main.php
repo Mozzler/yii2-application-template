@@ -8,9 +8,22 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use yii\helpers\ArrayHelper;
 use app\assets\AppAsset;
 
-AppAsset::register($this);
+$navModels = [
+	'user' => new app\models\User()
+];
+
+$loggedInItems = [];
+foreach ($navModels as $modelKey => $model) {
+	$loggedInItems[] = [
+		'label' => $model->getModelConfig('labelPlural'),
+		'url' => $model->getUrl('index')
+	];
+}
+
+$assetBundle = AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -35,26 +48,29 @@ AppAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Login', 'url' => ['/user/login']]
             ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
+	            [
+		            'label' => Yii::$app->user->identity->username(),
+		            'items' => [
+			            ['label' => 'Settings', 'url' => Yii::$app->user->identity->getUrl("update")],
+			            '<li>'
+		                . Html::beginForm([Yii::$app->user->identity->getUrl("logout")], 'post')
+		                . Html::submitButton(
+		                    'Logout',
+		                    ['class' => 'btn btn-link logout']
+		                )
+		                . Html::endForm()
+		                . '</li>'
+		            ]
+	            ]
             )
         ],
     ]);
@@ -72,9 +88,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?=Yii::$app->name?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right">Powered by <a href="https://www.mozzler.com.au/">Mozzler</a></p>
     </div>
 </footer>
 

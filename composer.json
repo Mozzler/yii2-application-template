@@ -15,23 +15,26 @@
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.14",
+        "php": ">=5.5.0",
+        "yiisoft/yii2": "~2.0.15",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "yiisoft/yii2-mongodb": "^2.1",
-        "yiisoft/yii2-twig": "^2.2"
+        "yiisoft/yii2-twig": "^2.2",
+        "flow/jsonpath": "^0.4.0",
+        "aksafan/yii2-fcm-both-api": "^0.9.3"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
         "yiisoft/yii2-gii": "~2.0.0",
         "yiisoft/yii2-faker": "~2.0.0",
-
-        "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1",
         "codeception/specify": "~0.4.3",
         "mozzler/yii2-base": "@dev",
-        "mozzler/yii2-auth": "@dev"
+        "mozzler/yii2-auth": "@dev",
+        "mozzler/yii2-rbac": "@dev",
+        "codeception/base": "^2.5",
+        "stecman/symfony-console-completion": "^0.8.0"
     },
     "config": {
         "process-timeout": 1800,
@@ -72,6 +75,10 @@
         {
             "type": "path",
             "url": "../mozzler/auth"
+        },
+        {
+            "type": "path",
+            "url": "../mozzler/rbac"
         }
     ]
 }

@@ -1,10 +1,12 @@
 <?php
 namespace app\models;
 
-use mozzler\auth\models\User as BaseUser;
+use mozzler\auth\models\User as BaseModel;
 
-class User extends BaseUser {
+use yii\helpers\ArrayHelper;
+
+class User extends BaseModel {
 	
-	
+
 	
 }

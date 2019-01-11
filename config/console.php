@@ -6,8 +6,8 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
-    'controllerNamespace' => 'app\project\console',
+    'bootstrap' => ['log','rbac'],
+    'controllerNamespace' => 'app\console',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -24,9 +24,29 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'mongodb' => $db,
+        'rbac' => [
+		    'class' => 'mozzler\rbac\components\RbacManager',
+		    'traceEnabled' => YII_DEBUG ? true : false
+	    ],
+        'mozzler' => [
+		    'class' => 'mozzler\base\components\Mozzler'
+	    ]
     ],
     'params' => $params,
+    'controllerMap' => [
+        'deploy' => [
+            'class' => 'mozzler\base\commands\DeployController'
+        ],
+        'auth' => [
+            'class' => 'mozzler\auth\commands\AuthController'
+        ]
+    ],
+    'modules' => [
+        'auth' => [
+            'class' => 'mozzler\auth\Module'
+        ]
+    ]
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.

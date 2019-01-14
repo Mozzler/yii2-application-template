@@ -7,7 +7,7 @@ required_plugins.each do |plugin|
 end
 
 domains = {
-  app: 'yii2basic.dev'
+  app: 'myapp.test'
 }
 
 vagrantfile_dir_path = File.dirname(__FILE__)
@@ -54,8 +54,11 @@ Vagrant.configure(2) do |config|
   # network settings
   config.vm.network 'private_network', ip: options['ip']
 
-  # sync: folder 'yii2-app-advanced' (host machine) -> folder '/app' (guest machine)
+  # sync: root (host machine) -> folder '/app' (guest machine)
   config.vm.synced_folder './', '/app', owner: 'vagrant', group: 'vagrant'
+
+  # sync: folder 'mozzler' (host machine) -> folder '/mozzler' (guest machine)
+  config.vm.synced_folder './../mozzler', '/mozzler', owner: 'vagrant', group: 'vagrant'
 
   # disable folder '/vagrant' (guest machine)
   config.vm.synced_folder '.', '/vagrant', disabled: true

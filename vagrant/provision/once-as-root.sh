@@ -21,31 +21,36 @@ export DEBIAN_FRONTEND=noninteractive
 info "Configure timezone"
 timedatectl set-timezone ${timezone} --no-ask-password
 
-info "Prepare root password for MySQL"
-debconf-set-selections <<< "mariadb-server-10.0 mysql-server/root_password password \"''\""
-debconf-set-selections <<< "mariadb-server-10.0 mysql-server/root_password_again password \"''\""
-echo "Done!"
+info "Configure MongoDB 3.6 Repos"
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+
+info "Configure PHP7.2 repos"
+add-apt-repository ppa:ondrej/php
 
 info "Update OS software"
 apt-get update
 apt-get upgrade -y
 
 info "Install additional software"
-apt-get install -y php7.0-curl php7.0-cli php7.0-intl php7.0-mysqlnd php7.0-gd php7.0-fpm php7.0-mbstring php7.0-xml unzip nginx mariadb-server-10.0 php.xdebug
+apt-get install -y php7.2-curl php7.2-cli php7.2-intl php7.2-gd php7.2-fpm php7.2-mbstring php7.2-xml php7.2-dev unzip nginx php.xdebug mongodb-org
 
-info "Configure MySQL"
-sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
-mysql -uroot <<< "CREATE USER 'root'@'%' IDENTIFIED BY ''"
-mysql -uroot <<< "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'"
-mysql -uroot <<< "DROP USER 'root'@'localhost'"
-mysql -uroot <<< "FLUSH PRIVILEGES"
-echo "Done!"
+info "Install PHP MongoDB"
+wget http://pear.php.net/go-pear.phar
+echo "y" | php go-pear.phar
+pecl install mongodb
+echo "extension=mongodb.so" >> /etc/php/7.2/fpm/conf.d/30-mongo.ini
+echo "extension=mongodb.so" >> /etc/php/7.2/cli/conf.d/30-mongo.ini
+
+info "Configure MongoDB"
+cp -f /app/vagrant/mongodb/mongod.conf /etc/mongod.conf
+service mongod restart
 
 info "Configure PHP-FPM"
-sed -i 's/user = www-data/user = vagrant/g' /etc/php/7.0/fpm/pool.d/www.conf
-sed -i 's/group = www-data/group = vagrant/g' /etc/php/7.0/fpm/pool.d/www.conf
-sed -i 's/owner = www-data/owner = vagrant/g' /etc/php/7.0/fpm/pool.d/www.conf
-cat << EOF > /etc/php/7.0/mods-available/xdebug.ini
+sed -i 's/user = www-data/user = vagrant/g' /etc/php/7.2/fpm/pool.d/www.conf
+sed -i 's/group = www-data/group = vagrant/g' /etc/php/7.2/fpm/pool.d/www.conf
+sed -i 's/owner = www-data/owner = vagrant/g' /etc/php/7.2/fpm/pool.d/www.conf
+cat << EOF > /etc/php/7.2/mods-available/xdebug.ini
 zend_extension=xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_connect_back=1
@@ -60,11 +65,6 @@ echo "Done!"
 
 info "Enabling site configuration"
 ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf
-echo "Done!"
-
-info "Initailize databases for MySQL"
-mysql -uroot <<< "CREATE DATABASE yii2basic"
-mysql -uroot <<< "CREATE DATABASE yii2basic_test"
 echo "Done!"
 
 info "Install composer"

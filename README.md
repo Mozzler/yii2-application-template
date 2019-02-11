@@ -100,10 +100,49 @@ You can then access the application through the following URL:
 
     http://127.0.0.1:8000
 
+
 **NOTES:** 
 - Minimum required Docker engine version `17.04` for development (see [Performance tuning for volume mounts](https://docs.docker.com/docker-for-mac/osxfs-caching/))
 - The default configuration uses a host-volume in your home directory `.docker-composer` for composer caches
 
+
+### Install with Vagrant
+
+To work with a headless virtual environment, do the following:
+
+In the `Vagrantfile` alter the app domain name e.g. `drivible.test`, this domain is the browser accessible address
+
+    domains = {
+        app: 'drivible.test'
+    }
+
+Update machine name in `vagrant/config/vagrant-local.yml` e.g. `drivible` and VM IP address e.g. `192.168.83.138` (so not to conflict with other VMs and connect the MongoDB via Compass)
+
+    # Virtual machine name
+    machine_name: drivible
+
+    # Virtual machine IP
+    ip: 192.168.83.138
+
+You can also use the config file above to tailor your VM specifications based on your needs.
+
+Edit the `config/web.php` e.g. `drivible` as app name
+
+    'name' => 'Drivible',
+
+Change in `nginx/app.conf` the server_name e.g. `drivible.test` to match the changes in the `Vagrantfile` app domain
+
+    server_name drivible.test;
+
+Then, provision the server
+
+    vagrant up
+
+**NOTES:** 
+- Vagrant installation is not fully unattended as it may require host password before proceeding in the middle of the process, kindly be aware or it will wait until your next intervention
+- Installation might take some time, for a successful process, you will be greeted with a message below, otherwise, error might occured
+    - `==> drivible: App URL: http://drivible.test`
+- Kindly refer to [Vagrant](vagrantup.com) docs to know more about vagrant commands (CLI) other than `vagrant up`, `vagrant halt`, `vagrant destroy`
 
 CONFIGURATION
 -------------

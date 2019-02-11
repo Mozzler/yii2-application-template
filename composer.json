@@ -70,15 +70,15 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../mozzler/base"
+            "url": "../mozzler/yii2-base"
         },
         {
             "type": "path",
-            "url": "../mozzler/auth"
+            "url": "../mozzler/yii2-auth"
         },
         {
             "type": "path",
-            "url": "../mozzler/rbac"
+            "url": "../mozzler/yii2-rbac"
         }
     ]
 }

@@ -21,7 +21,12 @@ $config = [
 			]
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'mozzler\base\components\cache',
+            'cacheCollection' => 'app.cache'
+        ],
+        'session' => [
+            'class' => 'yii\mongodb\session',
+            'sessionCollection' => 'app.session'
         ],
         'user' => [
             'identityClass' => 'app\models\User',
@@ -79,12 +84,18 @@ $config = [
 	        ],
 	        'defaultExtension' => 'twig'
         ],
+        't' => [
+            'class' => '\mozzler\base\components\Tools'
+        ],
         'mozzler' => [
 		    'class' => 'mozzler\base\components\Mozzler'
 	    ],
 	    'rbac' => [
 		    'class' => 'mozzler\rbac\components\RbacManager',
-		    'traceEnabled' => YII_DEBUG ? true : false
+            'traceEnabled' => YII_DEBUG ? true : false,
+            'ignoredCollections' => [
+                'app.session'
+            ]
 	    ],
 	    'formatter' => [
 		    'datetimeFormat' => 'Y-m-d H:i:s',

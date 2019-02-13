@@ -85,7 +85,7 @@ $config = [
 	        'defaultExtension' => 'twig'
         ],
         't' => [
-            'class' => '\mozzler\base\components\Tools'
+            'class' => 'mozzler\base\components\Tools'
         ],
         'mozzler' => [
 		    'class' => 'mozzler\base\components\Mozzler'

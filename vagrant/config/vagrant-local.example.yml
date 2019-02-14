@@ -1,16 +1,16 @@
 # Your personal GitHub token
-github_token: <your-personal-github-token>
+github_token: <token>
 # Read more: https://github.com/blog/1509-personal-api-tokens
 # You can generate it here: https://github.com/settings/tokens
 
 # Guest OS timezone
-timezone: Europe/London
+timezone: Australia/Adelaide
 
 # Are we need check box updates for every 'vagrant up'?
 box_check_update: false
 
 # Virtual machine name
-machine_name: yii2basic
+machine_name: template
 
 # Virtual machine IP
 ip: 192.168.83.137

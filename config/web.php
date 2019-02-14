@@ -1,7 +1,8 @@
 <?php
-
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+
+use kartik\datecontrol\Module as DateControlModule;
 
 $config = [
     'id' => 'basic',
@@ -98,8 +99,9 @@ $config = [
             ]
 	    ],
 	    'formatter' => [
-		    'datetimeFormat' => 'Y-m-d H:i:s',
-		    'dateFormat' => 'Y-m-d'
+		    'datetimeFormat' => 'd M Y H:i',
+            'dateFormat' => 'd M Y',
+            'timeZone' => 'Australia/Adelaide'
 	    ]
     ],
     'modules' => [
@@ -117,7 +119,37 @@ $config = [
 	    ],
 	    'auth' => [
 	        'class' => '\mozzler\auth\Module'
-	    ]
+        ],
+        'datecontrol' =>  [
+            'class' => '\kartik\datecontrol\Module',
+    
+            // format settings for saving each date attribute (PHP format example)
+            // always store as unix epoch
+            'saveSettings' => [
+                DateControlModule::FORMAT_DATE => 'php:U', // saves as unix timestamp
+                DateControlModule::FORMAT_TIME => 'php:U',
+                DateControlModule::FORMAT_DATETIME => 'php:U',
+            ],
+    
+            // set your display timezone
+            'displayTimezone' => 'Australia/Adelaide',
+    
+            // set your timezone for date saved to db
+            'saveTimezone' => 'UTC',
+    
+            // automatically use kartik\widgets for each of the above formats
+            'autoWidget' => true,
+    
+            // use ajax conversion for processing dates from display format to save format.
+            'ajaxConversion' => true,
+    
+            // default settings for each widget from kartik\widgets used when autoWidget is true
+            'autoWidgetSettings' => [
+                DateControlModule::FORMAT_DATE => ['type'=>2, 'pluginOptions'=>['autoclose'=>true,'todayHighlight'=>true]], // example
+                DateControlModule::FORMAT_DATETIME => [], // setup if needed
+                DateControlModule::FORMAT_TIME => [], // setup if needed
+            ]
+        ]
     ],
     'params' => $params,
 ];

@@ -4,6 +4,26 @@ $db = require __DIR__ . '/db.php';
 
 use kartik\datecontrol\Module as DateControlModule;
 
+$twigConfig = [
+    'class' => 'yii\twig\ViewRenderer',
+    'cachePath' => '@runtime/Twig/cache',
+    'options' => [
+        'auto_reload' => true,
+        'autoescape' => false
+    ],
+    'globals' => [
+        'html' => [
+            'class' => '\yii\helpers\Html'
+        ],
+        'arrayhelper' => [
+            'class' => '\yii\helpers\ArrayHelper'
+        ],
+        't' => [
+            'class' => '\mozzler\base\components\Tools'
+        ]
+    ],
+];
+
 $config = [
     'id' => 'basic',
     'name' => 'Project Name',
@@ -38,10 +58,27 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'enableSwiftMailerLogging' => false,
+        	'transport' => [
+        		'class' => 'Swift_SmtpTransport',
+	        	'plugins' => [
+		        	['class' => 'Openbuildings\Swiftmailer\CssInlinerPlugin']
+                ],
+                "username" => '',
+                "password" => '',
+                "host" => '',
+                "port" => 465,
+                "encryption" => 'ssl'
+        	],
+        	'viewPath' => '@app/views/emails',
+        	'view' => [
+        		'class' => 'mozzler\base\yii\web\View',
+        		'renderers' => [
+        			'twig' => $twigConfig
+        		]
+        	],
+        	'htmlLayout' => '@app/views/layouts/emails/html.twig',
+        	'textLayout' => '@app/views/layouts/emails/text.twig'
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -63,25 +100,7 @@ $config = [
         'view' => [
 	        'class' => 'mozzler\base\yii\web\View',
             'renderers' => [
-		        'twig' => [
-	                'class' => 'yii\twig\ViewRenderer',
-	                'cachePath' => '@runtime/Twig/cache',
-	                'options' => [
-	                    'auto_reload' => true,
-	                    'autoescape' => false
-	                ],
-	                'globals' => [
-	                	'html' => [
-	                		'class' => '\yii\helpers\Html'
-	                	],
-	                	'arrayhelper' => [
-		                	'class' => '\yii\helpers\ArrayHelper'
-	                	],
-	                	't' => [
-	                		'class' => '\mozzler\base\components\Tools'
-	                	]
-	                ],
-	            ]
+		        'twig' => $twigConfig
 	        ],
 	        'defaultExtension' => 'twig'
         ],

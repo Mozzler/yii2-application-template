@@ -21,7 +21,10 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "yiisoft/yii2-mongodb": "^2.1",
         "yiisoft/yii2-twig": "^2.2",
-        "flow/jsonpath": "^0.4.0"
+        "flow/jsonpath": "^0.4.0",
+	    "mozzler/yii2-base": "dev-master",
+        "mozzler/yii2-auth": "dev-master",
+        "mozzler/yii2-rbac": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -29,9 +32,6 @@
         "yiisoft/yii2-faker": "~2.0.0",
         "codeception/verify": "~0.3.1",
         "codeception/specify": "~0.4.3",
-        "mozzler/yii2-base": "@dev",
-        "mozzler/yii2-auth": "@dev",
-        "mozzler/yii2-rbac": "@dev",
         "codeception/base": "^2.5",
         "stecman/symfony-console-completion": "^0.8.0"
     },
@@ -68,16 +68,16 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "../mozzler/yii2-base"
+            "type": "git",
+            "url": "https://github.com/Mozzler/yii2-base.git"
         },
         {
-            "type": "path",
-            "url": "../mozzler/yii2-auth"
+            "type": "git",
+            "url": "https://github.com/Mozzler/yii2-auth.git"
         },
         {
-            "type": "path",
-            "url": "../mozzler/yii2-rbac"
+            "type": "git",
+            "url": "https://github.com/Mozzler/yii2-rbac.git"
         }
     ]
 }

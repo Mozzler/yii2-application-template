@@ -34,3 +34,8 @@ tests/_support/_generated
 /.vagrant
 
 phpinfo.php
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

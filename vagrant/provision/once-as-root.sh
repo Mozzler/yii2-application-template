@@ -42,6 +42,14 @@ pecl install mongodb
 echo "extension=mongodb.so" >> /etc/php/7.2/fpm/conf.d/30-mongo.ini
 echo "extension=mongodb.so" >> /etc/php/7.2/cli/conf.d/30-mongo.ini
 
+info "Install AWS CLI tools"
+apt-get install -y python-dev
+pushd /tmp
+curl -O https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
+pip install awsebcli
+popd
+
 info "Configure MongoDB"
 cp -f /app/vagrant/mongodb/mongod.conf /etc/mongod.conf
 service mongod restart

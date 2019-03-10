@@ -42,11 +42,11 @@ $config = [
 			]
         ],
         'cache' => [
-            'class' => 'mozzler\base\components\cache',
+            'class' => 'mozzler\base\components\Cache',
             'cacheCollection' => 'app.cache'
         ],
         'session' => [
-            'class' => 'yii\mongodb\session',
+            'class' => 'yii\mongodb\Session',
             'sessionCollection' => 'app.session'
         ],
         'user' => [

@@ -21,9 +21,9 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "yiisoft/yii2-mongodb": "^2.1",
         "yiisoft/yii2-twig": "^2.2",
-	    "mozzler/yii2-base": "dev-master",
-        "mozzler/yii2-auth": "dev-master",
-        "mozzler/yii2-rbac": "dev-master"
+	    "mozzler/yii2-base": "@dev",
+        "mozzler/yii2-auth": "@dev",
+        "mozzler/yii2-rbac": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -67,16 +67,16 @@
     },
     "repositories": [
         {
-            "type": "git",
-            "url": "https://github.com/Mozzler/yii2-base.git"
+            "type": "path",
+            "url": "../mozzler/yii2-base"
         },
         {
-            "type": "git",
-            "url": "https://github.com/Mozzler/yii2-auth.git"
+            "type": "path",
+            "url": "../mozzler/yii2-auth"
         },
         {
-            "type": "git",
-            "url": "https://github.com/Mozzler/yii2-rbac.git"
+            "type": "path",
+            "url": "../mozzler/yii2-rbac"
         }
     ]
 }

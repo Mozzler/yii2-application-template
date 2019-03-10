@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c0c89ec7db42fd6e4c79b224dd58e88",
+    "content-hash": "aaadb52e884711c02fc73d4e387da412",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -735,9 +735,9 @@
         {
             "name": "mozzler/yii2-auth",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Mozzler/yii2-auth.git",
+            "dist": {
+                "type": "path",
+                "url": "../mozzler/yii2-auth",
                 "reference": "f569f9939b00f23522e54caca31519984457ef22"
             },
             "require": {
@@ -755,15 +755,14 @@
                     "email": "chris@mozzler.com.au"
                 }
             ],
-            "description": "mozzler auth",
-            "time": "2019-03-01T03:12:33+00:00"
+            "description": "mozzler auth"
         },
         {
             "name": "mozzler/yii2-base",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Mozzler/yii2-base.git",
+            "dist": {
+                "type": "path",
+                "url": "../mozzler/yii2-base",
                 "reference": "0bca4633cd1514df22c83d255e0e710eba32e886"
             },
             "require": {
@@ -787,15 +786,14 @@
                     "email": "chris@mozzler.com.au"
                 }
             ],
-            "description": "mozzler core",
-            "time": "2019-03-06T11:09:22+00:00"
+            "description": "mozzler core"
         },
         {
             "name": "mozzler/yii2-rbac",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Mozzler/yii2-rbac.git",
+            "dist": {
+                "type": "path",
+                "url": "../mozzler/yii2-rbac",
                 "reference": "34ca10626824a21a3c1c93f9e390f73305023410"
             },
             "require": {
@@ -813,8 +811,7 @@
                     "email": "chris@mozzler.com.au"
                 }
             ],
-            "description": "mozzler core",
-            "time": "2019-02-25T23:15:36+00:00"
+            "description": "mozzler core"
         },
         {
             "name": "openbuildings/swiftmailer-css-inliner",

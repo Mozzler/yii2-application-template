@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "bfcb7354c9343986f740ff5a5226aff9",
+=======
+    "content-hash": "aaadb52e884711c02fc73d4e387da412",
+>>>>>>> a421412... Make develop have mozzler repos pointing to symlinks
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1030,10 +1034,17 @@
         {
             "name": "kartik-v/yii2-widget-select2",
             "version": "dev-master",
+<<<<<<< HEAD
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-select2.git",
                 "reference": "dd09e46e618cf1c67a39fac9f38d97a95184fe8a"
+=======
+            "dist": {
+                "type": "path",
+                "url": "../mozzler/yii2-auth",
+                "reference": "f569f9939b00f23522e54caca31519984457ef22"
+>>>>>>> a421412... Make develop have mozzler repos pointing to symlinks
             },
             "dist": {
                 "type": "zip",
@@ -1075,15 +1086,14 @@
 >>>>>>> fb75475... Add latest composer lock
                 }
             ],
-            "description": "mozzler auth",
-            "time": "2019-03-01T03:12:33+00:00"
+            "description": "mozzler auth"
         },
         {
             "name": "mozzler/yii2-base",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Mozzler/yii2-base.git",
+            "dist": {
+                "type": "path",
+                "url": "../mozzler/yii2-base",
                 "reference": "0bca4633cd1514df22c83d255e0e710eba32e886"
             },
             "require": {
@@ -1147,15 +1157,14 @@
                     "email": "chris@mozzler.com.au"
                 }
             ],
-            "description": "mozzler core",
-            "time": "2019-03-06T11:09:22+00:00"
+            "description": "mozzler core"
         },
         {
             "name": "mozzler/yii2-rbac",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Mozzler/yii2-rbac.git",
+            "dist": {
+                "type": "path",
+                "url": "../mozzler/yii2-rbac",
                 "reference": "34ca10626824a21a3c1c93f9e390f73305023410"
             },
             "require": {
@@ -1173,8 +1182,7 @@
                     "email": "chris@mozzler.com.au"
                 }
             ],
-            "description": "mozzler core",
-            "time": "2019-02-25T23:15:36+00:00"
+            "description": "mozzler core"
         },
         {
             "name": "openbuildings/swiftmailer-css-inliner",

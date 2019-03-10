@@ -67,16 +67,16 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "../mozzler/yii2-base"
+            "type": "git",
+            "url": "https://github.com/Mozzler/yii2-base"
         },
         {
-            "type": "path",
-            "url": "../mozzler/yii2-auth"
+            "type": "git",
+            "url": "https://github.com/Mozzler/yii2-auth"
         },
         {
-            "type": "path",
-            "url": "../mozzler/yii2-rbac"
+            "type": "git",
+            "url": "https://github.com/Mozzler/yii2-rbac"
         }
     ]
 }

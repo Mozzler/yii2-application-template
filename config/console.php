@@ -31,7 +31,26 @@ $config = [
 	    ],
         'mozzler' => [
 		    'class' => 'mozzler\base\components\Mozzler'
-	    ]
+        ],
+        "deployManager" => [
+            "class" => "mozzler\base\components\DeployManager",
+            "init" => [
+                "indexes" => [
+                    "command" => "deploy/sync",
+                    "params" => []
+                ],
+                "adminUser" => [
+                    "command" => "auth/init-credentials",
+                    "params" => []
+                ]
+            ],
+            "redeploy" => [
+                "indexes" => [
+                    "command" => "deploy/sync",
+                    "params" => []
+                ]
+            ],
+        ],
     ],
     'params' => $params,
     'controllerMap' => [
@@ -40,7 +59,13 @@ $config = [
         ],
         'auth' => [
             'class' => 'mozzler\auth\commands\AuthController'
-        ]
+        ],
+        'task' => [
+            'class' => 'mozzler\base\commands\TaskController'
+        ],
+        'cron' => [
+            'class' => 'mozzler\base\commands\CronController'
+        ],
     ],
     'modules' => [
         'auth' => [

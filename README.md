@@ -277,3 +277,33 @@ You can see code coverage output under the `tests/_output` directory.
 ## Composer
 
 `composer.json` has entries in `require-dev` that point to development versions of `mozzler` related packages. This allows for easily developing in those packages with live updating within the current yii2 application. This avoids needing to update a package, commit it, then re-run composer to update.
+
+# Releases
+
+## Creating a new deployment
+
+$ eb init
+$ eb create
+
+## Creating a release
+
+1. Merge the latest `develop` branch into `master`:
+
+```
+$ git checkout master
+$ git merge --no-commit --no-ff develop
+```
+
+2. Update the mozzler repos to the latest master versions:
+
+`composer update mozzler/*`
+
+3. Review the changes and then run `git commit` to finalise the changes.
+
+4. Create a new tagged release:
+
+`git tag -m "v${VERSION} deployment release" "v{VERSION}"`
+
+5. Deploy the release:
+
+`eb deploy`

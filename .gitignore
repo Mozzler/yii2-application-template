@@ -35,3 +35,6 @@ tests/_support/_generated
 /.vagrant
 
 phpinfo.php
+
+/runtime
+config/local.php

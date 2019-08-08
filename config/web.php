@@ -56,30 +56,7 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'enableSwiftMailerLogging' => false,
-        	'transport' => [
-        		'class' => 'Swift_SmtpTransport',
-	        	'plugins' => [
-		        	['class' => 'Openbuildings\Swiftmailer\CssInlinerPlugin']
-                ],
-                "username" => '',
-                "password" => '',
-                "host" => '',
-                "port" => 465,
-                "encryption" => 'ssl'
-        	],
-        	'viewPath' => '@app/views/emails',
-        	'view' => [
-        		'class' => 'mozzler\base\yii\web\View',
-        		'renderers' => [
-        			'twig' => $twigConfig
-        		]
-        	],
-        	'htmlLayout' => '@app/views/layouts/emails/html.twig',
-        	'textLayout' => '@app/views/layouts/emails/text.twig'
-        ],
+
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -104,24 +81,6 @@ $config = [
 	        ],
 	        'defaultExtension' => 'twig'
         ],
-        't' => [
-            'class' => 'mozzler\base\components\Tools'
-        ],
-        'mozzler' => [
-		    'class' => 'mozzler\base\components\Mozzler'
-	    ],
-	    'rbac' => [
-		    'class' => 'mozzler\rbac\components\RbacManager',
-            'traceEnabled' => YII_DEBUG ? true : false,
-            'ignoredCollections' => [
-                'app.session'
-            ]
-	    ],
-	    'formatter' => [
-		    'datetimeFormat' => 'd M Y H:i',
-            'dateFormat' => 'd M Y',
-            'timeZone' => 'Australia/Adelaide'
-	    ]
     ],
     'modules' => [
 	    'gridview' =>  [
@@ -192,4 +151,4 @@ if (YII_ENV_DEV) {
     $config['components']['view']['renderers']['twig']['extensions'] = ['Twig_Extension_Debug'];
 }
 
-return $config;
+return \yii\helpers\ArrayHelper::merge($commonConfig, $config, $localConfig);

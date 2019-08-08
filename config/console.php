@@ -2,6 +2,12 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$commonConfig = require __DIR__ . '/common.php';
+
+$localConfig = [];
+if (is_readable(__DIR__ . '/local.php')) {
+    include __DIR__ . '/local.php';
+}
 
 $config = [
     'id' => 'basic-console',
@@ -40,20 +46,17 @@ $config = [
         ],
         'auth' => [
             'class' => 'mozzler\auth\commands\AuthController'
-        ]
+        ],
+        'stubs' => [
+            'class' => 'bazilio\stubsgenerator\StubsController',
+        ],
     ],
     'modules' => [
         'auth' => [
             'class' => 'mozzler\auth\Module'
         ]
-    ]
-    /*
-    'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
-        ],
     ],
-    */
+
 ];
 
 if (YII_ENV_DEV) {
@@ -64,4 +67,4 @@ if (YII_ENV_DEV) {
     ];
 }
 
-return $config;
+return \yii\helpers\ArrayHelper::merge($commonConfig, $config, $localConfig);

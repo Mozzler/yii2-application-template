@@ -15,6 +15,7 @@ Thumbs.db
 # composer vendor dir
 /vendor
 /vendor-dev
+!/vendor/Yii.php
 
 # composer itself is not needed
 composer.phar

@@ -3,6 +3,12 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 use kartik\datecontrol\Module as DateControlModule;
+$commonConfig = require __DIR__ . '/common.php';
+
+$localConfig = [];
+if (is_readable(__DIR__ . '/local.php')) {
+    include __DIR__ . '/local.php';
+}
 
 $twigConfig = [
     'class' => 'yii\twig\ViewRenderer',

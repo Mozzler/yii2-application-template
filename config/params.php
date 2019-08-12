@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'apiVersionNumber' => '0.1', // Used when doing deploy version specific commands
     'adminEmail' => 'chris@mozzler.com.au',
     'mozzler.base' => [
         'email' => [

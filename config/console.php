@@ -22,6 +22,34 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'deployManager' => [
+            'class' => 'mozzler\base\components\DeployManager',
+            'versionParam' => 'apiVersionNumber',
+            'init' => [
+                'indexes' => [
+                    'command' => 'deploy/sync',
+                    'params' => []
+                ],
+                'adminUser' => [
+                    'command' => 'auth/init-credentials',
+                    'params' => []
+                ],
+                'config' => [
+                    'command' => 'config/init',
+                    'params' => []
+                ]
+            ],
+            'redeploy' => [
+                'indexes' => [
+                    'command' => 'deploy/sync',
+                    'params' => []
+                ],
+                'config' => [
+                    'command' => 'config/init',
+                    'params' => []
+                ]
+            ],
+        ],
         'log' => [
             'targets' => [
                 [
@@ -53,7 +81,15 @@ $config = [
     ],
     'modules' => [
         'auth' => [
-            'class' => 'mozzler\auth\Module'
+            'class' => 'mozzler\auth\Module',
+            'initialCredentials' => [
+                'status' => 'active',
+                'username' => 'user@example.com',
+                'password' => 'the_password',
+                'firstName' => 'First',
+                'lastName' => 'Admin',
+                'roles' => ['registered', 'admin']
+            ]
         ]
     ],
 

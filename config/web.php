@@ -58,6 +58,8 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'authTimeout' => 86400, // last a day
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

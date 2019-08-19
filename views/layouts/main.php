@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use app\widgets\Alert;
+use mozzler\base\components\Tools;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -15,12 +16,19 @@ $navModels = [
 	'user' => new app\models\User()
 ];
 
+
+$mainNavItems = ['User', 'Example'];
+
 $loggedInItems = [];
-foreach ($navModels as $modelKey => $model) {
-	$loggedInItems[] = [
-		'label' => $model->getModelConfig('labelPlural'),
-		'url' => $model->getUrl('index')
-	];
+foreach ($mainNavItems as $navItem) {
+    $controller = 'app\controllers\\' . $navItem . 'Controller';
+    if (\Yii::$app->rbac->canAccessControllerAction($controller, 'index')) {
+        $model = Tools::createModel('app\models\\' . $navItem);
+        $loggedInItems[] = [
+            'label' => $model->getModelConfig('labelPlural'),
+            'url' => $model->getUrl('index', ['sort' => '-createdAt'])
+        ];
+    }
 }
 
 $assetBundle = AppAsset::register($this);
@@ -51,29 +59,31 @@ $assetBundle = AppAsset::register($this);
             'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
+        'items' => ArrayHelper::merge(Yii::$app->user->isGuest ? [] : $loggedInItems, [
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/user/login']]
+            ['label' => 'Login', 'url' => ['/user/login']]
             ) : (
-	            [
-		            'label' => Yii::$app->user->identity->username(),
-		            'items' => [
-			            ['label' => 'Settings', 'url' => Yii::$app->user->identity->getUrl("update")],
-			            '<li>'
-		                . Html::beginForm([Yii::$app->user->identity->getUrl("logout")], 'post')
-		                . Html::submitButton(
-		                    'Logout',
-		                    ['class' => 'btn btn-link logout']
-		                )
-		                . Html::endForm()
-		                . '</li>'
-		            ]
-	            ]
+            [
+                'label' => Yii::$app->user->identity->username(),
+                'items' => [
+                    ['label' => 'Settings', 'url' => Yii::$app->user->identity->getUrl("update")],
+                    '<li>'
+                    . Html::beginForm([Yii::$app->user->identity->getUrl("logout")], 'post')
+                    . Html::submitButton(
+                        'Logout',
+                        ['class' => 'btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                ]
+            ]
             )
-        ],
+        ]),
     ]);
+
     NavBar::end();
     ?>
 

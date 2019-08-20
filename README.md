@@ -17,6 +17,16 @@ This version is updated with Mozzler specific changes to use that as the main fr
 
 The project is expected to run using MongoDB as the database and PHP using Apache or Nginx as the webserver.
 
+
+Stubs
+-------------------------------
+When you add a new component and want the IDE autocomplete you'll want to regenerate the stubs so you can use `\Yii::$app->componentName`) 
+you can run `./yii stubs 'config/console.php' 'config/web.php'`
+
+Running the stubs command should update the vendor/Yii.php file and add a number of @property entries. CHeck https://packagist.org/packages/bazilio/yii2-stubs-generator for more info
+
+
+
 DIRECTORY STRUCTURE
 -------------------
 

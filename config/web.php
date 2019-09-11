@@ -32,7 +32,6 @@ $twigConfig = [
 
 $config = [
     'id' => 'basic',
-    'name' => 'Project Name',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log','v1','oauth2','rbac'],
     'aliases' => [
@@ -93,22 +92,22 @@ $config = [
     ],
     'modules' => [
 	    'gridview' =>  [
-        	'class' => '\kartik\grid\Module'
+        	'class' => 'kartik\grid\Module'
         ],
 	    'mozzlerBase' => [
-		    'class' => '\mozzler\base\Module'
+		    'class' => 'mozzler\base\Module'
 	    ],
 	    'v1' => [
 		    'class' => 'app\apiv1\Module'
 	    ],
 	    'oauth2' => [
-	        'class' => '\mozzler\auth\OauthModule'
+	        'class' => 'mozzler\auth\OauthModule'
 	    ],
 	    'auth' => [
-	        'class' => '\mozzler\auth\Module'
+	        'class' => 'mozzler\auth\Module'
         ],
         'datecontrol' =>  [
-            'class' => '\kartik\datecontrol\Module',
+            'class' => 'kartik\datecontrol\Module',
     
             // format settings for saving each date attribute (PHP format example)
             // always store as unix epoch

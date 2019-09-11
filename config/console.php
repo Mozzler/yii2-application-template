@@ -12,11 +12,11 @@ if (is_readable(__DIR__ . '/local.php')) {
 $config = [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log','rbac'],
+    'bootstrap' => ['log', 'rbac'],
     'controllerNamespace' => 'app\console',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'cache' => [
@@ -37,7 +37,14 @@ $config = [
                 'config' => [
                     'command' => 'config/init',
                     'params' => []
-                ]
+                ],
+                "fixtureData" => [
+                    "command" => "data/init",
+                ],
+                "stubs" => [
+                    "command" => "stubs",
+                    "params" => ['config/console.php', 'config/web.php']
+                ],
             ],
             'redeploy' => [
                 'indexes' => [
@@ -47,7 +54,11 @@ $config = [
                 'config' => [
                     'command' => 'config/init',
                     'params' => []
-                ]
+                ],
+                "stubs" => [
+                    "command" => "stubs",
+                    "params" => ['config/console.php', 'config/web.php']
+                ],
             ],
         ],
         'log' => [
@@ -60,12 +71,12 @@ $config = [
         ],
         'mongodb' => $db,
         'rbac' => [
-		    'class' => 'mozzler\rbac\components\RbacManager',
-		    'traceEnabled' => YII_DEBUG ? true : false
-	    ],
+            'class' => 'mozzler\rbac\components\RbacManager',
+            'traceEnabled' => YII_DEBUG ? true : false
+        ],
         'mozzler' => [
-		    'class' => 'mozzler\base\components\Mozzler'
-	    ]
+            'class' => 'mozzler\base\components\Mozzler'
+        ]
     ],
     'params' => $params,
     'controllerMap' => [
@@ -77,6 +88,9 @@ $config = [
         ],
         'stubs' => [
             'class' => 'bazilio\stubsgenerator\StubsController',
+        ],
+        'data' => [
+            'class' => 'mozzler\base\commands\DataController',
         ],
     ],
     'modules' => [

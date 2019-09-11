@@ -12,21 +12,22 @@ $twigConfig = [
     ],
     'globals' => [
         'html' => [
-            'class' => '\yii\helpers\Html'
+            'class' => 'yii\helpers\Html'
         ],
         'arrayhelper' => [
-            'class' => '\yii\helpers\ArrayHelper'
+            'class' => 'yii\helpers\ArrayHelper'
         ],
         't' => [
-            'class' => '\mozzler\base\components\Tools'
+            'class' => 'mozzler\base\components\Tools'
         ]
     ],
 ];
 
 $commonConfig = [
+    'name' => 'Project Name',
     'components' => [
         'cache' => [
-            'class' => 'mozzler\base\components\cache',
+            'class' => 'mozzler\base\components\Cache',
             'cacheCollection' => 'app.cache'
         ],
         'mailer' => [
@@ -69,7 +70,7 @@ $commonConfig = [
             ],
         ],
         't' => [
-            'class' => '\mozzler\base\components\Tools'
+            'class' => 'mozzler\base\components\Tools'
         ],
         'mozzler' => [
             'class' => 'mozzler\base\components\Mozzler'

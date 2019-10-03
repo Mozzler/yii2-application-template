@@ -92,6 +92,15 @@ $config = [
         'data' => [
             'class' => 'mozzler\base\commands\DataController',
         ],
+        'task' => [
+            'class' => 'mozzler\base\commands\TaskController'
+        ],
+        'cron' => [
+            'class' => 'mozzler\base\commands\CronController'
+        ],
+        'general' => [
+            'class' => 'mozzler\base\commands\GeneralController',
+        ],
     ],
     'modules' => [
         'auth' => [

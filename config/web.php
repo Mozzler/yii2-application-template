@@ -3,6 +3,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 use kartik\datecontrol\Module as DateControlModule;
+
 $commonConfig = require __DIR__ . '/common.php';
 
 $localConfig = [];
@@ -33,18 +34,18 @@ $twigConfig = [
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log','v1','oauth2','rbac'],
+    'bootstrap' => ['log', 'v1', 'oauth2', 'rbac'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset'
+        '@npm' => '@vendor/npm-asset'
     ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'c2cy7924c4792c949c2r9y7c',
             'parsers' => [
-				'application/json' => 'yii\web\JsonParser',
-			]
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'cache' => [
             'class' => 'mozzler\base\components\Cache',
@@ -80,35 +81,35 @@ $config = [
             'showScriptName' => false,
             'rules' => [
 //		        ['class' => 'mozzler\base\yii\rest\MongoUrlRule', 'controller' => 'v1/<controllername>'],
-		    ],
+            ],
         ],
         'view' => [
-	        'class' => 'mozzler\base\yii\web\View',
+            'class' => 'mozzler\base\yii\web\View',
             'renderers' => [
-		        'twig' => $twigConfig
-	        ],
-	        'defaultExtension' => 'twig'
+                'twig' => $twigConfig
+            ],
+            'defaultExtension' => 'twig'
         ],
     ],
     'modules' => [
-	    'gridview' =>  [
-        	'class' => 'kartik\grid\Module'
+        'gridview' => [
+            'class' => 'kartik\grid\Module'
         ],
-	    'mozzlerBase' => [
-		    'class' => 'mozzler\base\Module'
-	    ],
-	    'v1' => [
-		    'class' => 'app\apiv1\Module'
-	    ],
-	    'oauth2' => [
-	        'class' => 'mozzler\auth\OauthModule'
-	    ],
-	    'auth' => [
-	        'class' => 'mozzler\auth\Module'
+        'mozzlerBase' => [
+            'class' => 'mozzler\base\Module'
         ],
-        'datecontrol' =>  [
+        'v1' => [
+            'class' => 'app\apiv1\Module'
+        ],
+        'oauth2' => [
+            'class' => 'mozzler\auth\OauthModule'
+        ],
+        'auth' => [
+            'class' => 'mozzler\auth\Module'
+        ],
+        'datecontrol' => [
             'class' => 'kartik\datecontrol\Module',
-    
+
             // format settings for saving each date attribute (PHP format example)
             // always store as unix epoch
             'saveSettings' => [
@@ -116,25 +117,31 @@ $config = [
                 DateControlModule::FORMAT_TIME => 'php:U',
                 DateControlModule::FORMAT_DATETIME => 'php:U',
             ],
-    
+
             // set your display timezone
             'displayTimezone' => 'Australia/Adelaide',
-    
+
             // set your timezone for date saved to db
             'saveTimezone' => 'UTC',
-    
+
             // automatically use kartik\widgets for each of the above formats
             'autoWidget' => true,
-    
+
             // use ajax conversion for processing dates from display format to save format.
             'ajaxConversion' => true,
-    
+
             // default settings for each widget from kartik\widgets used when autoWidget is true
             'autoWidgetSettings' => [
-                DateControlModule::FORMAT_DATE => ['type'=>2, 'pluginOptions'=>['autoclose'=>true,'todayHighlight'=>true]], // example
+                DateControlModule::FORMAT_DATE => ['type' => 2, 'pluginOptions' => ['autoclose' => true, 'todayHighlight' => true]], // example
                 DateControlModule::FORMAT_DATETIME => [], // setup if needed
                 DateControlModule::FORMAT_TIME => [], // setup if needed
             ]
+        ]
+    ],
+    'controllerMap' => [
+        'file' => [
+            // Allow file uploads
+            'class' => 'mozzler\base\controllers\FileController'
         ]
     ],
     'params' => $params,
@@ -155,7 +162,7 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
-    
+
     $config['components']['view']['renderers']['twig']['extensions'] = ['Twig_Extension_Debug'];
 }
 

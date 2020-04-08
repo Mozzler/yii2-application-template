@@ -33,6 +33,12 @@ cat << EOF >> /home/vagrant/.bash_aliases
 ## Specific Bash Aliases
 alias app="cd /app"
 
+## Before deploying, especially to Staging or Production you'll want to update the latest Mozzler base
+alias mozzlerUpdate='composer update mozzler/*'
+
+## Assumes you are using AWS's EB, likely in the staging or master branch.
+alias deploy='mozzlerUpdate && eb deploy'
+
 ## General Bash Aliases ( based on https://www.kublermdk.com/2017/01/18/my-bash_aliases-2017/ )
 alias timezone_new='sudo dpkg-reconfigure tzdata'
 alias acs='apt-cache search'

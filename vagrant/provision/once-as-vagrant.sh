@@ -28,6 +28,9 @@ composer --no-progress --prefer-dist install
 info "Enabling colorized prompt for guest console"
 sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /home/vagrant/.bashrc
 
+info "Setting up initial app credentials by running yii deploy/init"
+/app/yii deploy/init --force 1
+
 info "Creating bash-aliases for vagrant user"
 cat << EOF >> /home/vagrant/.bash_aliases
 ## Specific Bash Aliases
@@ -37,7 +40,11 @@ alias app="cd /app"
 alias mozzlerUpdate='composer update mozzler/*'
 
 ## Assumes you are using AWS's EB, likely in the staging or master branch.
-alias deploy='mozzlerUpdate && eb deploy'
+alias deploy='cd /app && mozzlerUpdate && git add composer.lock && git commit -m "* Latest Mozzler base"  &&  eb deploy'
+
+# For updating the Mozzler vendor folder if symlinked on Windows
+alias vendor-mozzler='rm -rv vendor/mozzler/*; composer install;'
+
 
 ## General Bash Aliases ( based on https://www.kublermdk.com/2017/01/18/my-bash_aliases-2017/ )
 alias timezone_new='sudo dpkg-reconfigure tzdata'
@@ -91,6 +98,7 @@ alias ubuntuVersion='cat /etc/*-release'
 alias netGraph='slurm -i eth0'
 alias ifconfigNet='curl checkip.amazonaws.com'
 alias ifconfigNetAll='curl ifconfig.me/all'
+alias phpTime="echo -e 'Current Unixtime:\e[38;5;14m'; echo 'echo time();' | php -a 2>/dev/null | tail -1"
 
 alias processtree='pstree -paul'
 alias git_changed_files_from_commit_hash='git show --pretty="format:" --name-only '; # head is a good argument, otherwise the SHA1. Based on http://stackoverflow.com/questions/424071/list-all-the-files-for-a-commit-in-git

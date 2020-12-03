@@ -20,6 +20,9 @@ info "Configure composer"
 composer config --global github-oauth.github.com ${github_token}
 echo "Done!"
 
+# Install the composer-asset-plugin so you don't get errors about yiisoft/yii2 requires bower-asset/jquery NB: At least as of 1st Dec 2020 this only works with composer v1
+composer global require "fxp/composer-asset-plugin"
+
 info "Install project dependencies"
 cd /app
 composer --no-progress --prefer-dist install

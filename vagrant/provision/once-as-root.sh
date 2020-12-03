@@ -33,7 +33,7 @@ apt-get update
 apt-get upgrade -y
 
 info "Install additional software"
-apt-get install -y php7.2-curl php7.2-cli php7.2-intl php7.2-gd php7.2-fpm php7.2-mbstring php7.2-xml php7.2-dev unzip nginx php.xdebug mongodb-org
+apt-get install -y php7.2-curl php7.2-cli php7.2-intl php7.2-gd php7.2-fpm php7.2-mbstring php7.2-xml php7.2-dev unzip nginx php.xdebug mongodb-org htop
 
 info "Install PHP MongoDB"
 wget http://pear.php.net/go-pear.phar
@@ -68,4 +68,15 @@ ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf
 echo "Done!"
 
 info "Install composer"
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+curl -sS https://getcomposer.org/installer | php -- --1 --install-dir=/usr/local/bin --filename=composer
+
+info "Add more Swap Space for Composer"
+# As per https://getcomposer.org/doc/articles/troubleshooting.md#proc-open-fork-failed-errors and https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04
+fallocate -l 2G /var/swap.1
+/sbin/mkswap /var/swap.1
+/bin/chmod 0600 /var/swap.1
+/sbin/swapon /var/swap.1
+echo '/var/swap.1 none swap sw 0 0' | sudo tee -a /etc/fstab
+# Reduce the system's use of swap from the default 60%
+echo 'vm.swappiness=30' | sudo tee -a /etc/sysctl.conf
+echo 'vm.vfs_cache_pressure = 50' | sudo tee -a /etc/sysctl.conf

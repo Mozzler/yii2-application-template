@@ -36,18 +36,21 @@ info "Setting up initial app credentials by running yii deploy/init"
 
 info "Creating bash-aliases for vagrant user"
 cat << EOF >> /home/vagrant/.bash_aliases
-## Specific Bash Aliases
+## Project Vagrant VM Specific Bash Aliases
 alias app="cd /app"
+alias stubs="./yii stubs 'config/console.php' 'config/web.php'"
 
 ## Before deploying, especially to Staging or Production you'll want to update the latest Mozzler base
 alias mozzlerUpdate='composer update mozzler/*'
 
+## If you don't have the Mozzler base Symlinked (e.g when using Vagrant on Windows)
+alias mozzlerBaseRsyncUpdate='rsync -avh --exclude=.git --exclude=vendor/ /mozzler/yii2-base /app/vendor/mozzler/'
+alias mozzlerAuthRsyncUpdate='rsync -avh --exclude=.git --exclude=vendor/ /mozzler/yii2-auth /app/vendor/mozzler/'
+alias mozzlerRbacRsyncUpdate='rsync -avh --exclude=.git --exclude=vendor/ /mozzler/yii2-rbac /app/vendor/mozzler/'
+alias mozzlerBaseDevelopment='while true; do rsync -avh --exclude=.git --exclude=vendor/ /mozzler/yii2-base/ /app/vendor/mozzler/yii2-base/;     sleep 1; done'
+
 ## Assumes you are using AWS's EB, likely in the staging or master branch.
 alias deploy='cd /app && mozzlerUpdate && git add composer.lock && git commit -m "* Latest Mozzler base"  &&  eb deploy'
-
-# For updating the Mozzler vendor folder if symlinked on Windows
-alias vendor-mozzler='rm -rv vendor/mozzler/*; composer install;'
-
 
 ## General Bash Aliases ( based on https://www.kublermdk.com/2017/01/18/my-bash_aliases-2017/ )
 alias timezone_new='sudo dpkg-reconfigure tzdata'

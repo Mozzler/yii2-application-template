@@ -34,6 +34,15 @@ sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /home/vagrant/.bashrc
 info "Setting up initial app credentials by running yii deploy/init"
 /app/yii deploy/init --force 1
 
+info "Install EB"
+# As per https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html#eb-cli3-install.scripts
+# Alternatively if this doesn't work try the installer from https://github.com/aws/aws-elastic-beanstalk-cli-setup
+# Install Pip
+curl -O https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py --user
+# Now install the AWS CLI including the ability to run EB
+pip install awsebcli --upgrade --user
+
 info "Creating bash-aliases for vagrant user"
 cat << EOF >> /home/vagrant/.bash_aliases
 ## Project Vagrant VM Specific Bash Aliases

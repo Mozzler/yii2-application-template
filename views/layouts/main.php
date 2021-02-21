@@ -17,7 +17,7 @@ $navModels = [
 ];
 
 
-$mainNavItems = ['User', 'Example'];
+$mainNavItems = ['User', 'ConspiracyLevelQuestionnaire'];
 
 $loggedInItems = [];
 foreach ($mainNavItems as $navItem) {

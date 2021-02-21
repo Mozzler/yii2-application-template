@@ -6,9 +6,9 @@ use mozzler\base\controllers\ModelController as BaseController;
 use yii\helpers\ArrayHelper;
 
 
-class ExampleController extends BaseController
+class ConspiracyLevelQuestionnaireController extends BaseController
 {
-    public $modelClass = 'app\models\Example';
+    public $modelClass = 'app\models\ConspiracyLevelQuestionnaire';
 
 
     public static function rbac()
@@ -17,10 +17,27 @@ class ExampleController extends BaseController
             // 'public' = Not Logged in
             // 'registered' = Logged in
             // 'admin' = Administrators
+            'public' => [
+                'create' => [
+                    'grant' => true // Example of denying an action to logged in users
+                ],
+                'view' => [
+                    'grant' => true
+                ],
+                'update' => [
+                    'grant' => false
+                ],
+                'index' => [
+                    'grant' => false
+                ],
+                'delete' => [
+                    'grant' => false
+                ]
+            ],
 
             'registered' => [
                 'create' => [
-                    'grant' => false // Example of denying an action to logged in users
+                    'grant' => true // Example of denying an action to logged in users
                 ],
                 'view' => [
                     'grant' => true

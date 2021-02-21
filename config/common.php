@@ -24,7 +24,7 @@ $twigConfig = [
 ];
 
 $commonConfig = [
-    'name' => 'tzm-questionnaire',
+    'name' => 'TZM Questionnaires',
     'components' => [
         'cache' => [
             'class' => 'mozzler\base\components\Cache',

@@ -25,7 +25,7 @@ class ConspiracyLevelQuestionnaire extends BaseQuestionnaireModel
     protected function modelConfig()
     {
         return ArrayHelper::merge(parent::modelConfig(), [
-            'label' => ' Questionnaire Conspiracy Level',
+            'label' => 'Questionnaire Conspiracy Level',
             'labelPlural' => 'Conspiracy Level'
         ]);
     }
@@ -67,7 +67,6 @@ class ConspiracyLevelQuestionnaire extends BaseQuestionnaireModel
                 'type' => 'Integer',
                 'label' => 'Much of our lives are being controlled by plots hatched in Secret Places',
                 'required' => true,
-                'hint' => "Answer from 0-7 with 0 being least agree and 7 being most agree",
                 'rules' => [
                     'integer' => ['max' => 7, 'min' => 0],
                 ]
@@ -76,7 +75,6 @@ class ConspiracyLevelQuestionnaire extends BaseQuestionnaireModel
                 'type' => 'Integer',
                 'label' => 'Even though we live in a Democracy a few people always run things anyway',
                 'required' => true,
-                'hint' => "Answer from 0-7 with 0 being least agree and 7 being most agree",
                 'rules' => [
                     'integer' => ['max' => 7, 'min' => 0]
                 ]
@@ -85,7 +83,6 @@ class ConspiracyLevelQuestionnaire extends BaseQuestionnaireModel
                 'type' => 'Integer',
                 'label' => 'The people who really run the country are not known to the voters.',
                 'required' => true,
-                'hint' => "Answer from 0-7 with 0 being least agree and 7 being most agree",
                 'rules' => [
                     'integer' => ['max' => 7, 'min' => 0]
                 ]
@@ -94,6 +91,19 @@ class ConspiracyLevelQuestionnaire extends BaseQuestionnaireModel
         ]);
 
         return $fields;
+    }
+
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_CREATE] = ['name', 'question1plots', 'question2democracy', 'question2unknownRulers'];
+        $scenarios[self::SCENARIO_UPDATE] = $scenarios[self::SCENARIO_CREATE];
+        $scenarios[self::SCENARIO_VIEW] = ArrayHelper::merge($scenarios[self::SCENARIO_CREATE], ['answerTotal', 'answerPercent'], self::FIELDS_AUTO_GENERATED); // Set the scenario view to show everything on the Admin Control Panel by default
+        $scenarios[self::SCENARIO_LIST] = ['name', 'answerTotal', 'answerPercent'];
+        $scenarios[self::SCENARIO_LIST_API] = $scenarios[self::SCENARIO_VIEW];
+        $scenarios[self::SCENARIO_VIEW_API] = ArrayHelper::merge($scenarios[self::SCENARIO_CREATE], self::FIELDS_AUTO_GENERATED);
+        return $scenarios;
     }
 
 }

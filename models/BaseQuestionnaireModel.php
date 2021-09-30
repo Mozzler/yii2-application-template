@@ -26,15 +26,6 @@ class BaseQuestionnaireModel extends Model
     protected function modelFields()
     {
         return ArrayHelper::merge(parent::modelFields(), [
-            'name' => [
-                'default' => $this->getUsersName(),
-                'required' => true,
-            ],
-            'email' => [
-                'type' => 'Email',
-                'label' => 'Email Address',
-                'default' => $this->getUsersEmail()
-            ],
             'answerTotal' => [
                 'type' => 'Double',
                 'label' => 'Answer Total',
@@ -43,7 +34,6 @@ class BaseQuestionnaireModel extends Model
                 'type' => 'Double',
                 'label' => 'Answer Percent',
             ],
-
         ]);
     }
 
@@ -51,7 +41,6 @@ class BaseQuestionnaireModel extends Model
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_CREATE] = ArrayHelper::merge(['name', 'email'], $this->getQuestionFieldNames());
         $scenarios[self::SCENARIO_UPDATE] = $scenarios[self::SCENARIO_CREATE];
         $scenarios[self::SCENARIO_VIEW] = ArrayHelper::merge($scenarios[self::SCENARIO_CREATE], ['answerTotal', 'answerPercent'], self::FIELDS_AUTO_GENERATED); // Set the scenario view to show everything on the Admin Control Panel by default
         $scenarios[self::SCENARIO_LIST] = ['name', 'answerTotal', 'answerPercent'];
@@ -105,30 +94,6 @@ class BaseQuestionnaireModel extends Model
             $this->maxPoints = $this->pointsPerQuestion * $numberOfQuestionFieldNames;
         }
         return $this->maxPoints;
-    }
-
-    public function getUsersName()
-    {
-        // -- Get the logged in user by default
-        /** @var User $user */
-        $user = \Yii::$app->user->getIdentity();
-
-        if (!empty($user)) {
-            return $user->name;
-        }
-        return null;
-    }
-
-    public function getUsersEmail()
-    {
-        // -- Get the logged in user by default
-        /** @var User $user */
-        $user = \Yii::$app->user->getIdentity();
-
-        if (!empty($user)) {
-            return $user->email;
-        }
-        return null;
     }
 
 }

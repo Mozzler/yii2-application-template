@@ -17,6 +17,10 @@ This version is updated with Mozzler specific changes to use that as the main fr
 
 The project is expected to run using MongoDB as the database and PHP using Apache or Nginx as the webserver.
 
+Elastic Beanstalk
+-------------------------------
+
+Check [docs/elastic-beanstalk.md](docs/elastic-beanstalk.md) for more information about configuring and using this with AWS's Elastic Beanstalk system
 
 Stubs
 -------------------------------

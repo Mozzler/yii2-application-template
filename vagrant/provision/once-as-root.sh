@@ -21,13 +21,11 @@ export DEBIAN_FRONTEND=noninteractive
 info "Configure timezone"
 timedatectl set-timezone ${timezone} --no-ask-password
 
-info "Configure MongoDB 4.4 Repos"
-# As per https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04
-curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+info "Configure MongoDB 3.6 Repos"
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
 
-
-info "Configure PHP7.4 repos"
+info "Configure PHP7.2 repos"
 add-apt-repository ppa:ondrej/php
 
 info "Update OS software"
@@ -35,31 +33,24 @@ apt-get update
 apt-get upgrade -y
 
 info "Install additional software"
-apt-get install -y php7.4-curl php7.4-cli php7.4-intl php7.4-gd php7.4-fpm php7.4-mbstring php7.4-xml php7.4-dev php7.4-mongodb unzip nginx php.xdebug mongodb-org htop net-tools
+apt-get install -y php7.2-curl php7.2-cli php7.2-intl php7.2-gd php7.2-fpm php7.2-mbstring php7.2-xml php7.2-dev unzip nginx php.xdebug mongodb-org htop
 
-#info "Install PHP MongoDB"
-# NB: Already installed now with php7.4-mongodb
-#wget http://pear.php.net/go-pear.phar
-#echo "y" | php go-pear.phar
-#pecl install mongodb
-#echo "extension=mongodb.so" >> /etc/php/7.4/fpm/conf.d/30-mongo.ini
-#echo "extension=mongodb.so" >> /etc/php/7.4/cli/conf.d/30-mongo.ini
+info "Install PHP MongoDB"
+wget http://pear.php.net/go-pear.phar
+echo "y" | php go-pear.phar
+pecl install mongodb
+echo "extension=mongodb.so" >> /etc/php/7.2/fpm/conf.d/30-mongo.ini
+echo "extension=mongodb.so" >> /etc/php/7.2/cli/conf.d/30-mongo.ini
 
 info "Configure MongoDB"
-cp /etc/mongod.conf /etc/mongodb.conf.original
-cp -f /app/vagrant/mongodb/mongodb.conf /etc/mongodb.conf
-# Ensure it's enabled
-systemctl unmask mongodb
-service mongodb restart
-# Ensure it'll boot on startup
-systemctl enable mongodb
-
+cp -f /app/vagrant/mongodb/mongod.conf /etc/mongod.conf
+service mongod restart
 
 info "Configure PHP-FPM"
-sed -i 's/user = www-data/user = vagrant/g' /etc/php/7.4/fpm/pool.d/www.conf
-sed -i 's/group = www-data/group = vagrant/g' /etc/php/7.4/fpm/pool.d/www.conf
-sed -i 's/owner = www-data/owner = vagrant/g' /etc/php/7.4/fpm/pool.d/www.conf
-cat << EOF > /etc/php/7.4/mods-available/xdebug.ini
+sed -i 's/user = www-data/user = vagrant/g' /etc/php/7.2/fpm/pool.d/www.conf
+sed -i 's/group = www-data/group = vagrant/g' /etc/php/7.2/fpm/pool.d/www.conf
+sed -i 's/owner = www-data/owner = vagrant/g' /etc/php/7.2/fpm/pool.d/www.conf
+cat << EOF > /etc/php/7.2/mods-available/xdebug.ini
 zend_extension=xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_connect_back=1

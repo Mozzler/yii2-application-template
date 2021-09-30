@@ -9,8 +9,14 @@ use mozzler\base\models\Model as Model;
 use yii\helpers\ArrayHelper;
 
 /**
- * Class BaseModel
+ * Class Team
  * @package app\models
+ *
+ * Was accounts
+ *
+ * @property string $status
+ * @property string $billingPlanId
+ *
  */
 class BaseModel extends Model
 {
@@ -24,6 +30,7 @@ class BaseModel extends Model
         $scenarios[self::SCENARIO_UPDATE] = $scenarios[self::SCENARIO_CREATE];
         $scenarios[self::SCENARIO_VIEW] = ArrayHelper::merge($scenarios[self::SCENARIO_CREATE], self::FIELDS_AUTO_GENERATED); // Set the scenario view to show everything on the Admin Control Panel by default
         $scenarios[self::SCENARIO_LIST_API] = $scenarios[self::SCENARIO_VIEW];
+        $scenarios[self::SCENARIO_VIEW_API] = ArrayHelper::merge($scenarios[self::SCENARIO_CREATE], self::FIELDS_AUTO_GENERATED);
         $scenarios[self::SCENARIO_VIEW_API] = ArrayHelper::merge($scenarios[self::SCENARIO_CREATE], self::FIELDS_AUTO_GENERATED);
         return $scenarios;
     }

@@ -24,7 +24,7 @@ $twigConfig = [
 ];
 
 $commonConfig = [
-    'name' => 'tzm-questionnaire',
+    'name' => 'Project Name',
     'components' => [
         'cache' => [
             'class' => 'mozzler\base\components\Cache',
@@ -112,12 +112,12 @@ $commonConfig = [
     ],
     'container' => [
         'definitions' => [
-//            'mozzler\base\models\Config' => [
-//                'class' => 'app\models\Config',
-//            ],
-//            'mozzler\auth\models\oauth\OAuthClient' => [
-//                'class' => 'app\models\OAuthClient',
-//            ],
+            'mozzler\base\models\Config' => [
+                'class' => 'app\models\Config',
+            ],
+            'mozzler\auth\models\oauth\OAuthClient' => [
+                'class' => 'app\models\OAuthClient',
+            ],
         ],
     ],
 ];

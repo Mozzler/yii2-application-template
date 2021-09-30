@@ -7,7 +7,7 @@ required_plugins.each do |plugin|
 end
 
 domains = {
-  app: 'tzm-questionnaire.test'
+  app: 'template.test'
 }
 
 vagrantfile_dir_path = File.dirname(__FILE__)
@@ -24,14 +24,14 @@ options = YAML.load_file config[:local]
 
 # check github token
 if options['github_token'].nil? || options['github_token'].to_s.length != 40
-  puts "You must place REAL GitHub token into configuration:\nvagrant/config/vagrant-local.yml"
+  puts "You must place REAL GitHub token into configuration:\n/yii2-app-basic/vagrant/config/vagrant-local.yml"
   exit
 end
 
 # vagrant configurate
 Vagrant.configure(2) do |config|
   # select the box
-  config.vm.box = 'bento/ubuntu-20.04'
+  config.vm.box = 'bento/ubuntu-16.04'
 
   # should we ask about box updates?
   config.vm.box_check_update = options['box_check_update']
@@ -57,7 +57,6 @@ Vagrant.configure(2) do |config|
   # sync: root (host machine) -> folder '/app' (guest machine)
   config.vm.synced_folder './', '/app', owner: 'vagrant', group: 'vagrant'
 
-# You'll want the Mozzler yii2-base, yii2-rbac, yii2-auth repos in a mozzler folder for this
   # sync: folder 'mozzler' (host machine) -> folder '/mozzler' (guest machine)
   config.vm.synced_folder './../mozzler', '/mozzler', owner: 'vagrant', group: 'vagrant'
 

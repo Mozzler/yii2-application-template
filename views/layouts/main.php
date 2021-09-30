@@ -1,7 +1,6 @@
 <?php
 
 /* @var $this \yii\web\View */
-
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -14,7 +13,7 @@ use yii\helpers\ArrayHelper;
 use app\assets\AppAsset;
 
 $navModels = [
-    'user' => new app\models\User()
+	'user' => new app\models\User()
 ];
 
 
@@ -38,9 +37,9 @@ $assetBundle = AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <script>
-        var m = {'widgets': {}};
-    </script>
+	<script>
+		var m = {'widgets': {}};
+	</script>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,9 +98,9 @@ $assetBundle = AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Yii::$app->name ?> <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?=Yii::$app->name?> <?= date('Y') ?></p>
 
-        <p class="pull-right">Powered by the <a href="https://tzm.community/">TZM Community</a></p>
+        <p class="pull-right">Powered by <a href="https://www.mozzler.com.au/">Mozzler</a></p>
     </div>
 </footer>
 

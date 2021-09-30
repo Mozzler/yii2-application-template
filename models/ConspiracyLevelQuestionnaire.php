@@ -26,7 +26,7 @@ class ConspiracyLevelQuestionnaire extends BaseQuestionnaireModel
     {
         return ArrayHelper::merge(parent::modelConfig(), [
             'label' => 'Questionnaire Conspiracy Level',
-            'labelPlural' => 'Conspiracy Level'
+            'labelPlural' => 'Questionnaire Entries Conspiracy Level'
         ]);
     }
 

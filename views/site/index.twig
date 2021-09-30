@@ -3,7 +3,7 @@
 	<h2>Welcome</h2>
 	
 	{% if user %}
-	<p>You are logged in as {{ user.username() }}</p>
+	<p>You are logged in as&nbsp; {{ user.username() }}</p>
 	{% else %}
 	<p>Please <a href="{{ t.load('app.models.User').getUrl('login') }}">Login</a></p>
 	{% endif %}

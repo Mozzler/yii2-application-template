@@ -10,7 +10,7 @@ timezone: Australia/Adelaide
 box_check_update: false
 
 # Virtual machine name
-machine_name: template
+machine_name: tzm-questionnaire
 
 # Virtual machine IP
 ip: 192.168.83.137

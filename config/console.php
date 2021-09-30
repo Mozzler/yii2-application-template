@@ -107,9 +107,9 @@ $config = [
             'class' => 'mozzler\auth\Module',
             'initialCredentials' => [
                 'status' => 'active',
-                'username' => 'user@example.com',
-                'password' => 'the_password',
-                'firstName' => 'First',
+                'username' => 'admin@tzm-questionnaire.test',
+                'password' => 'admin-tzm-questionnaire.test',
+                'firstName' => 'Initial',
                 'lastName' => 'Admin',
                 'roles' => ['registered', 'admin']
             ]
